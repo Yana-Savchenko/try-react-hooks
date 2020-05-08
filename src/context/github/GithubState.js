@@ -13,8 +13,8 @@ export const GithubState = ({ children }) => {
 
   const initialState = {
     user: {},
-    users: {},
-    loading: {},
+    users: [],
+    loading: null,
     repos: [],
   }
 
@@ -25,7 +25,7 @@ export const GithubState = ({ children }) => {
 
     const res = await axios.get(
       `https://api.github.com/search/users?q=${value}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
-    )
+    ) 
 
     dispatch({
       type: SEARCH_USERS,
@@ -37,7 +37,7 @@ export const GithubState = ({ children }) => {
     setLoading();
     
     const res = await axios.get(
-      `https://api.github.com/users/${name}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
+      `https://api.github.com/users/${name}`
     )
 
     dispatch({
@@ -64,13 +64,18 @@ export const GithubState = ({ children }) => {
 
   const setLoading = () => dispatch({ type: SET_LOADING })
 
-  const { user, users, repos, loading } = { state };
+  console.log('state', state);
+  
+
+  const { user, users, repos, loading } = state;
+
+  console.log('test: ', user, users, repos, loading);
+  
 
   return (
     <GithubContext.Provider
       value={{
-        search, setLoading, getUser, getRepos, clearUsers,
-        user, users, repos, loading
+        search, setLoading, getUser, getRepos, clearUsers, user, users, repos, loading
       }}
     >
       {children}
