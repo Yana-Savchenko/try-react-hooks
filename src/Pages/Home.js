@@ -6,10 +6,7 @@ import { GithubContext } from '../context/github/githubContext';
 export const Home = () => {
 
   const { loading, users } = useContext(GithubContext);
-  const test = useContext(GithubContext);
 
-  console.log('loading, users', loading, users, test);
-  
   return (
     <>
       <Search />
@@ -19,8 +16,7 @@ export const Home = () => {
         {loading
           && <p className="text-center">Loading...</p>
         }
-        {
-          users
+        {users
           && users.map(user => (
             <div className="col-sm-4 mb-4" key={user.id}>
               <Card user={user} />

@@ -25,7 +25,7 @@ export const GithubState = ({ children }) => {
 
     const res = await axios.get(
       `https://api.github.com/search/users?q=${value}&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
-    ) 
+    )
 
     dispatch({
       type: SEARCH_USERS,
@@ -35,7 +35,7 @@ export const GithubState = ({ children }) => {
 
   const getUser = async name => {
     setLoading();
-    
+
     const res = await axios.get(
       `https://api.github.com/users/${name}`
     )
@@ -49,7 +49,7 @@ export const GithubState = ({ children }) => {
   const getRepos = async name => {
 
     setLoading();
-    
+
     const res = await axios.get(
       `https://api.github.com/users/${name}/repos?per_page=5&client_id=${CLIENT_ID}&client_secret=${CLIENT_SECRET}`
     )
@@ -64,13 +64,7 @@ export const GithubState = ({ children }) => {
 
   const setLoading = () => dispatch({ type: SET_LOADING })
 
-  console.log('state', state);
-  
-
   const { user, users, repos, loading } = state;
-
-  console.log('test: ', user, users, repos, loading);
-  
 
   return (
     <GithubContext.Provider

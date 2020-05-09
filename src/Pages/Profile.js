@@ -29,7 +29,7 @@ export const Profile = ({ match }) => {
     <>
       <Link to="/">Back to Home</Link>
 
-      <div className="card mb-4">
+      <div className="card mb-4 mt-4">
         <div className="card-body">
           <div className="row">
             <div className="col-sm-3 text-center">
@@ -38,7 +38,7 @@ export const Profile = ({ match }) => {
                 alt="name"
                 style={{ width: '150px' }}
               />
-              <h1>{name}</h1>
+              <h3>{name}</h3>
               {location && <p>Location: {location}</p>}
             </div>
             <div className="col">
@@ -48,30 +48,34 @@ export const Profile = ({ match }) => {
                   <p>{bio}</p>
                 </>
               }
-              <a href={html_url} target="_blank" rel="noopener noreferrer" className="btn btn-dark">Open on Github</a>
-              <ul>
+              <a href={html_url} target="_blank" rel="noopener noreferrer" className="btn btn-primary">Open on Github</a>
+              <ul className="list-group list-group-flush">
                 {login &&
-                  <li>
+                  <li className="list-group-item">
                     <strong>Username: </strong> {login}
                   </li>}
                 {company &&
-                  <li>
+                  <li className="list-group-item">
                     <strong>Company: </strong> {company}
                   </li>}
                 {blog &&
-                  <li>
+                  <li className="list-group-item">
                     <strong>Website: </strong> {blog}
                   </li>}
               </ul>
-              <div className="badge badge-primary">Followers: {followers}</div>
-              <div className="badge badge-success">Following: {following}</div>
-              <div className="badge badge-info">Repos: {public_repos}</div>
+              <div className="badge badge-primary mr-1">Followers: {followers}</div>
+              <div className="badge badge-success mr-1">Following: {following}</div>
+              <div className="badge badge-info mr-1">Repos: {public_repos}</div>
               <div className="badge badge-dark">Gists: {public_gists}</div>
             </div>
           </div>
         </div>
       </div>
-
+      <div className="row">
+        <h5 className="col">
+          Repositories:
+      </h5>
+      </div>
       <Repos repos={repos} />
     </>
   )
